@@ -1,0 +1,20 @@
+<section>
+    <h1>Elastic Search App</h1>
+    <p>This is an app that allows you to search your street and find bike thefts</p>
+    <form action="/searchStreet" method="POST">
+        <label for='street'>Street Name:</label>
+        <input type='text' name='street' id='street' required />
+        <input type='submit' />
+    </form>
+</section>
+<section>
+	{{#each hits}}
+		<br>
+		<p>Hit: {{inc @index}}</p>
+		<p>Street Name: {{this._source.streetName.S}}</p>
+		<p>Street Number: {{this._source.streetNumber.S}}</p>
+		<p>Number of Racks: {{this._source.numberOfRacks.S}}</p>
+		<p>Year Installed: {{this._source.yearInstalled.S}}</p>
+		<p>Number of Thefts: {{this._source.numberOfThefts.S}}</p>
+	{{/each}}
+</section>
