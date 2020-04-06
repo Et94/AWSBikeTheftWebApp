@@ -10,12 +10,13 @@ exports.searchStreet = (req, res, next) => {
 	baseSearchString = "https://search-cloudfinalproject-3habgtgr5yqkwbnm6mzbi7rcbq.us-west-2.es.amazonaws.com/lambda-index-crimedata-test/_search?format=json&q=streetName.S:"
 	allHits = {}
 	fetch(baseSearchString + req.body.street)
-	.then((res) => res.json())
-	.then((body) => {
-		allHits = body.hits.hits
-		console.log(allHits);
-		res.render('homeView', {hits: allHits});
-	});
+		.then((res) => res.json())
+		.then((body) => {
+			console.log(body);
+			allHits = body.hits.hits
+			res.render('homeView', {hits: allHits});
+		}
+	);
 }
 
 function printInfo(item, index) {
