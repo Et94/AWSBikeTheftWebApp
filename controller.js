@@ -33,12 +33,14 @@ exports.searchStreet = (req, res, next) => {
 
 	var client = new AWS.HttpClient();
   	client.handleRequest(request, null, function(response) {
+		console.log(response)
 		console.log(response.statusCode + ' ' + response.statusMessage);
 		var responseBody = '';
 		response.on('data', function (chunk) {
 			responseBody += chunk;
 		});
 		response.on('end', function (chunk) {
+			console.log(responseBody);
 			let allHits = {}
 			let response = JSON.parse(responseBody);
 			allHits = response.hits.hits
